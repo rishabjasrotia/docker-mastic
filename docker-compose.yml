@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  mautic-mysql:
+    image: mysql:8.0
+    container_name: mautic-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - internal
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root_password
+    ports:
+      - "8080:80"
+
+  mautic-fpm:
+    build:
+      context: .
+      dockerfile: iac/docker/php/Dockerfile
+    container_name: mautic-fpm
+    env_file: .env
+    depends_on:
+      - mautic-mysql
+    restart: unless-stopped
+    networks:
+      - internal
+      - external
+    volumes:
+      - ./:/var/www/html/mautic
+
+  mautic-ngnix:
+    image: nginx:alpine-perl
+    container_name: mautic-ngnix
+    depends_on:
+      - mautic-fpm
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html/mautic
+      - ./iac/docker/nginx-conf:/etc/nginx/conf.d
+    networks:
+      - external
+
+networks:
+  external:
+    driver: bridge
+  internal:
+    driver: bridge
+
+volumes:
+  mautic:
+  db-data:

@@ -1,0 +1,8 @@
+.env
+
+vendor/*
+vendor/composer/*
+node_modules/*
+media/*
+bin/*
+var/*
