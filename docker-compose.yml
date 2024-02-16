@@ -40,16 +40,18 @@ services:
       - ./:/var/www/html/mautic
 
   mautic-ngnix:
-    image: nginx:alpine-perl
+    build:
+      context: .
+      dockerfile: iac/docker/nginx/Dockerfile    
     container_name: mautic-ngnix
     depends_on:
       - mautic-fpm
     restart: unless-stopped
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./:/var/www/html/mautic
-      - ./iac/docker/nginx-conf:/etc/nginx/conf.d
     networks:
       - external
 
