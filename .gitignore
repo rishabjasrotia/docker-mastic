@@ -7,4 +7,4 @@ media/*
 bin/*
 var/*
 media/*
-config/local.php
+config/*

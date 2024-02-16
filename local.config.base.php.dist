@@ -1,0 +1,19 @@
+<?php
+$parameters = [
+    'api_enabled'           => true,
+    'api_enable_basic_auth' => true,
+    'db_driver'             => 'pdo_mysql',
+    'db_host'               => 'mautic-mysql',
+    'db_table_prefix'       => null,
+    'db_port'               => 3306,
+    'db_name'               => 'mautic-MAUTIC_SUB_TENANT',
+    'db_user'               => 'mautic_database_user',
+    'db_password'           => 'mautic_database_password',
+    'admin_email'           => 'mautic@docker.local',
+    'admin_password'        => 'Maut1cR0cks!',
+    'install_source'        => 'DOCKER',
+    'mailer_from_name'      => 'DOCKER',
+    'mailer_from_email'     => 'mautic@docker.local',
+    'mailer_dsn'            => 'smtp://localhost:1025',
+    'dev_hosts'             => ['192.168.65.1'],
+];
