@@ -9,5 +9,5 @@ cp ./.env-example ./.env.test.local
 cp ./.env.local.dist ./.env.local
 
 printf "Installing Mautic...\n"
-./bin/console mautic:install "mautic-test.com"
+./bin/console mautic:install "https://mautic-test.com"
 ./bin/console cache:warmup --no-interaction --env=dev
