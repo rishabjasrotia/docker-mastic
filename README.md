@@ -4,6 +4,9 @@
 
 ```
 docker compose up -d
+
+# Setup Base Website
+cd /var/www/html/mautic && ./scripts/setup.sh
 ```
 
 

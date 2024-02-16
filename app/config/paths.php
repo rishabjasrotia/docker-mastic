@@ -19,7 +19,7 @@ if (!empty($_SERVER['HTTP_HOST'])) {
   $host = $_SERVER['HTTP_HOST'];
   $host = explode('.', $host);
   $sub_domain =  $host[0];
-    
+  
   if (file_exists($projectRoot.'/config/local-' . $sub_domain. '.php')) {
     $paths['local_config'] = '%kernel.project_dir%/config/local-' . $sub_domain. '.php';
   }

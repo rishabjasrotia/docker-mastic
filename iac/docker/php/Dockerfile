@@ -14,6 +14,11 @@ RUN cd /tmp && wget https://www.dotdeb.org/dotdeb.gpg && apt-key add dotdeb.gpg
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
+RUN apt-get update && apt-get -y install cron
+# copy the crontab in a location where it will be parsed by the system
+COPY ./iac/docker/php/config/crontab /etc/cron.d/crontab
+# owner can read and write into the crontab, group and others can read it
+RUN chmod 0644 /etc/cron.d/crontab
 
 RUN apt-get clean && apt-get update && apt-cache search php-mysql && apt-get install --fix-missing -y \
   imagemagick \

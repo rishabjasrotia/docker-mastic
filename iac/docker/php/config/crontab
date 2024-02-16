@@ -1,0 +1,6 @@
+# run the test script every minute and output whatever it echoes in a log file
+# using `>` instead of `>>` to append a new line at each cron iteration
+*/5 * * * *  HTTP_HOST=mautic-test.comphp /var/www/html/mautic/bin/console mautic:segments:update >> /var/log/crontab.log 2>&1   
+*/10 * * * *  HTTP_HOST=mautic-test.com php /var/www/html/mautic/bin/console mautic:campaigns:update >> /var/log/crontab.log 2>&1   
+*/12 * * * *  HTTP_HOST=mautic-test.com php /var/www/html/mautic/bin/console mautic:campaigns:trigger >> /var/log/crontab.log 2>&1  
+*/15 * * * *  HTTP_HOST=mautic-test.com php /var/www/html/mautic/bin/console mautic:emails:send >> /var/log/crontab.log 2>&1
