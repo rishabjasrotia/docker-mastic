@@ -16,5 +16,4 @@ $parameters = [
     'mailer_from_email'     => 'mautic@docker.local',
     'mailer_dsn'            => 'smtp://localhost:1025',
     'dev_hosts'             => ['192.168.65.1'],
-    'site_url'              => 'https://MAUTIC_SUB_TENANT.mautic-test.com',
 ];
