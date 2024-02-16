@@ -11,19 +11,19 @@ $paths = [
     'local_config' => '%kernel.project_dir%/config/local.php',
 ];
 
+
+$root        = $root ?? realpath(__DIR__.'/..');
+$projectRoot = $projectRoot ?? \Mautic\CoreBundle\Loader\ParameterLoader::getProjectDirByRoot($root);
+
 if (!empty($_SERVER['HTTP_HOST'])) {
   $host = $_SERVER['HTTP_HOST'];
   $host = explode('.', $host);
   $sub_domain =  $host[0];
-  
-  if (file_exists($projectRoot.'/config/local' . $sub_domain. '.php')) {
-      $paths['local_config'] = '%kernel.project_dir%/config/local' . $sub_domain. '.php';
+    
+  if (file_exists($projectRoot.'/config/local-' . $sub_domain. '.php')) {
+    $paths['local_config'] = '%kernel.project_dir%/config/local-' . $sub_domain. '.php';
   }
 }
-  
-
-$root        = $root ?? realpath(__DIR__.'/..');
-$projectRoot = $projectRoot ?? \Mautic\CoreBundle\Loader\ParameterLoader::getProjectDirByRoot($root);
 
 // allow easy overrides of the above
 if (file_exists($projectRoot.'/config/paths_local.php')) {

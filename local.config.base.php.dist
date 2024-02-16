@@ -6,7 +6,7 @@ $parameters = [
     'db_host'               => 'mautic-mysql',
     'db_table_prefix'       => null,
     'db_port'               => 3306,
-    'db_name'               => 'mautic-MAUTIC_SUB_TENANT',
+    'db_name'               => 'MAUTIC_SUB_TENANT',
     'db_user'               => 'mautic_database_user',
     'db_password'           => 'mautic_database_password',
     'admin_email'           => 'mautic@docker.local',
@@ -16,4 +16,5 @@ $parameters = [
     'mailer_from_email'     => 'mautic@docker.local',
     'mailer_dsn'            => 'smtp://localhost:1025',
     'dev_hosts'             => ['192.168.65.1'],
+    'site_url'              => 'https://MAUTIC_SUB_TENANT.mautic-test.com',
 ];

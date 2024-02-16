@@ -20,5 +20,8 @@ printf "Import Dump Base Database mautic.sql to $1\n"
 
 mysql -h host.docker.internal -P 3306 --protocol=tcp -u root --password="$MYSQL_ROOT_PASSWORD" $1 < mautic.sql;
 
-printf "FQDN for $2\n"
+
+mysql -h host.docker.internal -P 3306 --protocol=tcp -u root --password="$MYSQL_ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON $1.* TO '$MYSQL_USER'@'%'"
+
+printf "Cache Rebuild Mautic\n"
 ./bin/console cache:warmup --no-interaction --env=dev
