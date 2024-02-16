@@ -6,3 +6,5 @@ node_modules/*
 media/*
 bin/*
 var/*
+media/*
+config/local.php
